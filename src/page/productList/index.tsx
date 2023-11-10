@@ -1,7 +1,7 @@
 import './index.scss'
 import { fetchNextProductPage, useProductsState } from '../../store/productList'
 import { useAppDispatch } from '../../store'
-import { FlatList } from '../FlatList'
+import { FlatList } from '../../component/FlatList'
 import CartIcon from '../../asset/cart.svg?react'
 import { Footer } from './Footer'
 
