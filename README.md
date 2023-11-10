@@ -53,8 +53,18 @@ Overview of project structure
 
 ```
 
-- `/component` : With Reusable and extendable UI components
+- `/component` : With Reusable and extendable UI components: FlatList, Badge
 
 - `/store`: hold all the logic related to redux and async fetching
 
 - `/page`: components with business logic
+
+## CI w/ Githuh Actions
+
+Build and test tasks are going to be automatically ran after push to `main` branch
+
+## Deployment
+
+
+
+Since this is a CSR single page application, all the bundled file is static. Netfliy have been choosen to be the platform for deployment. Deployment is going to run when push to `release` branch.
