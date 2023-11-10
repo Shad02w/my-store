@@ -1,27 +1,60 @@
-# React + TypeScript + Vite
+# My Store DEMO
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The project is built using React, Typescript, React Redux, React Router and Vite.
 
-Currently, two official plugins are available:
+## Usages
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+to start dev server 
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+build the project
+
+```bash
+npm run build
+```
+
+You can also locally preview the production build
+
+```bash
+npm run preveiew
+```
+
+to run test
+
+```bash
+npm run test
+```
+
+## Project Sturcture
+
+```
+Overview of project structure
+├── src
+│   ├── App.tsx
+│   ├── api.ts
+│   ├── asset
+│   ├── component
+│   ├── index.scss
+│   ├── main.tsx
+│   ├── page
+│   ├── store
+│   ├── util.ts
+│   └── vite-env.d.ts
+├── test
+├── tsconfig.base.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+
+34 directories, 24 files
+
+```
+
+- `/component` : With Reusable and extendable UI components
+
+- `/store`: hold all the logic related to redux and async fetching
+
+- `/page`: components with business logic
