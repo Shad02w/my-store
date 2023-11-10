@@ -1,6 +1,6 @@
 # My Store DEMO
 
-The project is built using React, Typescript, React Redux, React Router and Vite and have been deploy to netlify: [Check it out](https://release--lovely-syrniki-236122.netlify.app/)
+The project was built using React, Typescript, React Redux, React Router and Vite and have been deployed to netlify: [Check it out](https://release--lovely-syrniki-236122.netlify.app/)
 
 ## Usages
 
