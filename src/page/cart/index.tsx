@@ -23,7 +23,7 @@ export default function Cart() {
     const totalItems = Object.values(cartItems).reduce((acc, cur) => acc + cur.length, 0)
     const totalAmount = Object.values(cartItems).reduce((acc, cur) => acc + cur.reduce((acc, cur) => acc + cur.price, 0), 0)
 
-    const backToShopping = <Link to="/">Back to Shopping</Link>
+    const backToShopping = <Link to="/">Back to Shop</Link>
 
     return (
         <main id="cart-main">

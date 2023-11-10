@@ -1,4 +1,5 @@
 import './index.scss'
+import { useMemo } from 'react'
 import { fetchNextProductPage, useProductsState } from '../../store/productList'
 import { useAppDispatch } from '../../store'
 import { FlatList } from '../../component/FlatList'
@@ -8,7 +9,6 @@ import { Footer } from './Footer'
 import { Link } from 'react-router-dom'
 import { Badge } from '../../component/Badge'
 import { cartActions, useCartState } from '../../store/cart'
-import { useMemo } from 'react'
 
 export function ProductList() {
     const { loading, error, products } = useProductsState()
