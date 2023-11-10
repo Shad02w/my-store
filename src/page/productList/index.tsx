@@ -1,8 +1,9 @@
 import './index.scss'
-import { productListActions, useProductsState } from '../../store/productList'
+import { fetchNextProductPage, useProductsState } from '../../store/productList'
 import { useAppDispatch } from '../../store'
 import { FlatList } from '../../component/FlatList'
 import CartIcon from '../../asset/cart.svg?react'
+import AddIcon from '../../asset/add.svg?react'
 import { Footer } from './Footer'
 import { Link } from 'react-router-dom'
 import { Badge } from '../../component/Badge'
@@ -16,11 +17,8 @@ export function ProductList() {
 
     const productsToBeShown = useMemo(() => products.filter(_ => !items.includes(_.uniqueId)), [items, products])
 
-    const fetchNextPage = () => dispatch(productListActions.fetchNextPage())
-    const addToCart = (id: string) => {
-        dispatch(cartActions.add(id))
-        dispatch(productListActions.remove(id))
-    }
+    const fetchNextPage = () => dispatch(fetchNextProductPage())
+    const addToCart = (id: string) => dispatch(cartActions.add(id))
 
     return (
         <div id="product-main">
@@ -44,7 +42,7 @@ export function ProductList() {
                         <p>{product.description}</p>
                         <span>${product.price}</span>
                         <button onClick={() => addToCart(product.uniqueId)}>
-                            <CartIcon />
+                            <AddIcon />
                         </button>
                     </div>
                 )}

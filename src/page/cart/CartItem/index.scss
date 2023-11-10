@@ -1,0 +1,53 @@
+.cart-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: 'image info';
+    width: 100%;
+
+    & + & {
+        border-top: 1px solid var(--secondary);
+        padding-top: 1.2rem;
+    }
+
+    img {
+        grid-area: image;
+        width: 10rem;
+        height: 6rem;
+        object-fit: contain;
+        align-self: center;
+        justify-self: center;
+    }
+
+    > .info {
+        display: grid;
+        grid-template-columns: 1fr 4rem;
+        grid-template-rows: 1fr 2rem;
+        grid-template-areas:
+            'title title'
+            'price action';
+        > .title {
+            grid-area: title;
+            min-height: 6rem;
+            font-weight: 700;
+        }
+
+        > span {
+            grid-area: price;
+            font-weight: 700;
+            color: var(--primary);
+            display: flex;
+            line-height: 2rem;
+            font-size: 1.2rem;
+            align-items: baseline;
+        }
+
+        > button {
+            grid-area: action;
+            color: var(--text);
+            text-decoration: underline;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+}

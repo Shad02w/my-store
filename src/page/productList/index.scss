@@ -14,8 +14,12 @@
         }
 
         a {
+            position: sticky;
+            top: 0px;
+            z-index: 1;
+            margin-right: 0.5rem;
             svg {
-                height: 1.8rem;
+                height: 2rem;
             }
         }
     }
