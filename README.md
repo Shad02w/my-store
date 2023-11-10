@@ -1,6 +1,6 @@
 # My Store DEMO
 
-The project is built using React, Typescript, React Redux, React Router and Vite.
+The project is built using React, Typescript, React Redux, React Router and Vite and have been deploy to netlify: [Check it out](https://release--lovely-syrniki-236122.netlify.app/)
 
 ## Usages
 
@@ -64,7 +64,5 @@ Overview of project structure
 Build and test tasks are going to be automatically ran after push to `main` branch
 
 ## Deployment
-
-
 
 Since this is a CSR single page application, all the bundled file is static. Netfliy have been choosen to be the platform for deployment. Deployment is going to run when push to `release` branch.
