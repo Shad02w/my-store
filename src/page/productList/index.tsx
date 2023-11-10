@@ -40,7 +40,7 @@ export function ProductList() {
                         <img src={product.image} />
                         <div className="title">{product.title}</div>
                         <p>{product.description}</p>
-                        <span>${product.price}</span>
+                        <span>$ {product.price}</span>
                         <button onClick={() => addToCart(product.uniqueId)}>
                             <AddIcon />
                         </button>
