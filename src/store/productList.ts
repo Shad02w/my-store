@@ -1,4 +1,5 @@
 import { SerializedError, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { withScope, captureException } from '@sentry/react'
 import { Product as APIProductType, getProducts } from '../api'
 import { useSelector } from 'react-redux'
 import { RootState } from './index'
@@ -41,6 +42,11 @@ const products = createSlice({
         builder.addCase(fetchNextProductPage.rejected, (state, action) => {
             state.loading = false
             state.error = action.error
+            withScope(scope => {
+                scope.setTag('action', 'fetchNextProductPage')
+                scope.setExtras(state)
+                captureException(action.error)
+            })
         })
     },
 })
