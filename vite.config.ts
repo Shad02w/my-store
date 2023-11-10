@@ -7,5 +7,5 @@ export default defineConfig({
     server: {
         host: true,
     },
-    plugins: [react(), svgr],
+    plugins: [react(), svgr()],
 })
