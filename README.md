@@ -66,3 +66,9 @@ Build and test tasks are going to be automatically ran after push to `main` bran
 ## Deployment
 
 Since this is a CSR single page application, all the bundled files are static. Netfliy have been choosen to be the platform for deployment. Deployment is going to run when push to `release` branch.
+
+## Screenshots
+<img src="./preview/product-list.png" alt="screen shot of product list on mobile" width="300"/>
+<img src="./preview/cart.png" alt="screen shot of cart on mobile" width="300"/>
+<img src="./preview/product-list-l.png" alt="screen shot of product list on desktop" width="700"/>
+<img src="./preview/cart-l.png" alt="screen shot of cart on desktop" width="700"/>
