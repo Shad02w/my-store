@@ -48,6 +48,7 @@ describe('groupBy tests', it => {
                     { id: 2, active: false },
                     { id: 3, active: true },
                 ],
+                // @ts-expect-error -- it is not a valid key type of an object
                 'active',
             ),
         ).toEqual({
@@ -60,6 +61,7 @@ describe('groupBy tests', it => {
     })
 
     it('handles empty array', () => {
+        // @ts-expect-error -- intentionally passing invalid key
         expect(groupBy([], 'anyKey')).toEqual({})
     })
 
