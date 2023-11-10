@@ -9,6 +9,7 @@ import { Footer } from './Footer'
 import { Link } from 'react-router-dom'
 import { Badge } from '../../component/Badge'
 import { cartActions, useCartState } from '../../store/cart'
+import { Page } from '../../component/Page'
 
 export function ProductList() {
     const { loading, error, products } = useProductsState()
@@ -21,7 +22,7 @@ export function ProductList() {
     const addToCart = (id: string) => dispatch(cartActions.add(id))
 
     return (
-        <main id="product-main">
+        <Page id="product-main" title="Products">
             <div className="header">
                 <h3>Product List</h3>
                 <Link to="/cart">
@@ -48,6 +49,6 @@ export function ProductList() {
                 )}
                 listFooter={<Footer loading={loading} hasError={error != null} retry={fetchNextPage} />}
             />
-        </main>
+        </Page>
     )
 }

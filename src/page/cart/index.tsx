@@ -4,6 +4,7 @@ import { Product, useProductsState } from '../../store/productList'
 import { CartItem } from './CartItem'
 import { Link } from 'react-router-dom'
 import { groupBy } from '../../util'
+import { Page } from '../../component/Page'
 
 interface CartItem {
     sku: string[]
@@ -26,7 +27,7 @@ export default function Cart() {
     const backToShopping = <Link to="/">Back to Shop</Link>
 
     return (
-        <main id="cart-main">
+        <Page id="cart-main" title="Cart">
             <div className="content">
                 <h3>Your Cart</h3>
                 {backToShopping}
@@ -54,6 +55,6 @@ export default function Cart() {
                     <button>Checkout</button>
                 </div>
             )}
-        </main>
+        </Page>
     )
 }
