@@ -1,0 +1,24 @@
+#product-list-footer {
+    min-height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .loading {
+        margin-top: 1rem;
+        width: 100%;
+        text-align: center;
+        color: var(--text);
+    }
+
+    .error {
+        margin-top: 1rem;
+        display: flex;
+        button {
+            margin-left: 4px;
+            text-decoration: underline;
+            width: min-content;
+            color: var(--primary);
+        }
+    }
+}

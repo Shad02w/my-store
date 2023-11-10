@@ -1,4 +1,11 @@
 :root {
+    font-family: 'Inter', sans-serif;
+    --border-color: #e0e0e0;
+    --text: #1c171a;
+    --background: #faf9fa;
+    --primary: #8c8a73;
+    --secondary: #d2dad5;
+    --accent: #65667b;
 }
 
 * {
@@ -9,4 +16,26 @@
 html,
 body {
     height: 100%;
+}
+
+button {
+    background: none;
+    border: none;
+    width: auto;
+    height: auto;
+    overflow: visible;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    line-height: normal;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: opacity 0.2s ease-in-out;
+
+    &:active {
+        opacity: 0.8;
+    }
 }

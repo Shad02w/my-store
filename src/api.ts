@@ -1,6 +1,5 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export interface Product {
-    id: number
+    id: string
     title: string
     description: string
     price: number
@@ -8,27 +7,6 @@ export interface Product {
     category: string
 }
 
-export const fakeStoreAPI = createApi({
-    reducerPath: 'fakeStoreAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com' }),
-    endpoints: builder => ({
-        getProducts: builder.query<Product[], { limit: number }>({
-            query: ({ limit }) => `products123?limit=${limit}`,
-        }),
-    }),
-})
-
-// TODO: Remove this API
-export interface DummyProduct {
-    products: Array<Product>
+export async function getProducts(): Promise<Product[]> {
+    return fetch('https://fakestoreapi.com/products?limit=20').then(res => res.json())
 }
-
-export const dummyAPI = createApi({
-    reducerPath: 'dummyAPI',
-    baseQuery: fetchBaseQuery({ baseUrl: 'https://dummyjson.com' }),
-    endpoints: builder => ({
-        getProducts: builder.query<DummyProduct, { skip: number }>({
-            query: ({ skip }) => `products?limit=20&skip=${skip}`,
-        }),
-    }),
-})

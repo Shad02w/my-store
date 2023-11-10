@@ -3,6 +3,9 @@ import { productListReducer } from './productList'
 import { useDispatch } from 'react-redux'
 import { fakeStoreAPI } from '../api'
 
+export type RootState = ReturnType<typeof store.getState>
+export type AppDispatch = typeof store.dispatch
+
 export const store = configureStore({
     reducer: {
         products: productListReducer,
@@ -14,6 +17,3 @@ export const store = configureStore({
 })
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
-
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch

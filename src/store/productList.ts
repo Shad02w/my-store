@@ -1,22 +1,21 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { Product } from '../api'
+import { SerializedError, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { Product, getProducts } from '../api'
+import { useSelector } from 'react-redux'
+import { RootState } from './index'
 
 interface ProductsState {
     loading: boolean
-    skip: number
     products: Array<Product>
+    error: SerializedError | null
 }
 
 const initialState: ProductsState = {
     loading: false,
-    skip: 0,
     products: [],
+    error: null,
 }
 
-const fetchNextProductPage = createAsyncThunk('products/fetchNextPage', async (skip: number) => {
-    const response = await fetch(`https://dummyjson.com/products?limit=20&skip=${skip}`)
-    return response.json()
-})
+export const fetchNextProductPage = createAsyncThunk('products/fetchNextPage', getProducts)
 
 const products = createSlice({
     name: 'products',
@@ -24,19 +23,28 @@ const products = createSlice({
     reducers: {},
     extraReducers: builder => {
         builder.addCase(fetchNextProductPage.fulfilled, (state, action) => {
-            state.products = state.products.concat(action.payload.products)
-            state.skip = action.payload
+            // Since fakeStoreAPI only returns 20 products, we need to change the id to a random string,
+            // prevent the key from being reused
+            state.products = [...state.products, ...action.payload.map(_ => ({ ..._, id: createKey() }))]
+            state.loading = false
+            state.error = null
         })
 
-        builder.addCase(fetchNextProductPage.pending, (state, action) => {
-            console.log(action)
+        builder.addCase(fetchNextProductPage.pending, state => {
+            state.loading = true
         })
 
         builder.addCase(fetchNextProductPage.rejected, (state, action) => {
-            console.log(action.error)
+            state.loading = false
+            state.error = action.error
         })
     },
 })
 
+function createKey() {
+    return Math.random().toString(36).substr(2, 9)
+}
+
 export const productListReducer = products.reducer
 export const productListActions = products.actions
+export const useProductsState = () => useSelector((state: RootState) => state.products)
