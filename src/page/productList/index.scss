@@ -1,5 +1,18 @@
 #product-main {
     padding: 1rem;
+    position: relative;
+
+    @media (min-width: 768px) {
+        .header {
+            padding-top: 0.5rem;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(5px);
+            background: rgba(255, 255, 255, 0.7);
+            z-index: 1;
+        }
+    }
+
     .header {
         display: flex;
         flex-flow: row nowrap;
@@ -14,8 +27,36 @@
         }
 
         a {
-            position: sticky;
-            top: 0px;
+            @media (max-width: 768px) {
+                position: fixed;
+
+                bottom: 2rem;
+                right: 1rem;
+                margin-right: 0px;
+
+                .c-badge {
+                    padding: 0.5rem;
+                    width: 2.5rem;
+                    height: 2.5rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    background: var(--secondary);
+                    svg {
+                        fill: var(--text);
+                        width: 2rem;
+                    }
+
+                    .count {
+                        transform: scale(1.2);
+                        right: -10%;
+                        top: -10%;
+                    }
+                }
+            }
+
+            display: block;
             z-index: 1;
             margin-right: 0.5rem;
             svg {

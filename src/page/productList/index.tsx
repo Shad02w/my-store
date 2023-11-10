@@ -21,7 +21,7 @@ export function ProductList() {
     const addToCart = (id: string) => dispatch(cartActions.add(id))
 
     return (
-        <div id="product-main">
+        <main id="product-main">
             <div className="header">
                 <h3>Product List</h3>
                 <Link to="/cart">
@@ -48,6 +48,6 @@ export function ProductList() {
                 )}
                 listFooter={<Footer loading={loading} hasError={error != null} retry={fetchNextPage} />}
             />
-        </div>
+        </main>
     )
 }
