@@ -6,12 +6,6 @@ import { Link } from 'react-router-dom'
 import { groupBy } from '../../util'
 import { Page } from '../../component/Page'
 
-interface CartItem {
-    sku: string[]
-    quantity: number
-    product: Product
-}
-
 export default function Cart() {
     const { items } = useCartState()
     const { products } = useProductsState()

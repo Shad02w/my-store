@@ -3,5 +3,5 @@ import { fetchNextProductPage } from '../../store/productList'
 
 export function loader() {
     store.dispatch(fetchNextProductPage())
-    return {}
+    return null
 }
