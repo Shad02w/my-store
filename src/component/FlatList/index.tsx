@@ -1,5 +1,5 @@
 import './index.scss'
-import { cloneElement, useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 
 interface Props<T> {
     id: string
@@ -13,16 +13,24 @@ interface Props<T> {
      *  This function will be called when the user scroll to the end of the list.
      */
     onEndReach?: () => void
+    /**
+     * trigger onEndReach when the user scroll to the end of the list minus this number.
+     * Default: 6.
+     */
+    overScan?: number
     listFooter?: React.ReactElement
 }
 
-export function FlatList<T>({ data, renderItem, keyExtractor, onEndReach, listFooter, id }: Props<T>) {
+export function FlatList<T>({ data, renderItem, keyExtractor, onEndReach, listFooter, id, overScan = 6 }: Props<T>) {
     const onEndReachRef = useRef(onEndReach)
     onEndReachRef.current = onEndReach
 
+    const markId = useMemo(() => `${id}__marker`, [id])
+    const markerIndex = Math.max(0, data.length - overScan)
+
     // use IntersectionObserver to detect scroll to bottom instead of listening to onScroll for better performance.
     useEffect(() => {
-        const marker = document.getElementById(`${id}__marker`)
+        const marker = document.getElementById(markId)
         if (marker) {
             const observer = new IntersectionObserver(entries => {
                 const target = entries.find(entry => entry.target === marker)
@@ -33,12 +41,19 @@ export function FlatList<T>({ data, renderItem, keyExtractor, onEndReach, listFo
             observer.observe(marker)
             return () => observer.disconnect()
         }
-    }, [id])
+    }, [markId, data])
 
     return (
         <div id={id} className="c-flat-list">
-            <div className="list-wrapper">{data.map((d, i) => cloneElement(renderItem(d), { key: keyExtractor(d, i) }))}</div>
-            <div className="marker" id={`${id}__marker`} />
+            <div className="list-wrapper">
+                {data.map((d, i) => {
+                    return (
+                        <div id={i === markerIndex ? markId : undefined} className="list-item" key={keyExtractor(d, i)}>
+                            {renderItem(d)}
+                        </div>
+                    )
+                })}
+            </div>
             {listFooter}
         </div>
     )

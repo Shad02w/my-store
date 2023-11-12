@@ -1,15 +1,15 @@
 import './index.scss'
 import { useMemo } from 'react'
-import { fetchNextProductPage, useProductsState } from '../../store/productList'
-import { useAppDispatch } from '../../store'
-import { FlatList } from '../../component/FlatList'
-import CartIcon from '../../asset/cart.svg?react'
-import AddIcon from '../../asset/add.svg?react'
-import { Footer } from './Footer'
 import { Link } from 'react-router-dom'
-import { Badge } from '../../component/Badge'
-import { cartActions, useCartState } from '../../store/cart'
+import { useAppDispatch } from '../../store'
+import { fetchNextProductPage, useProductsState } from '../../store/productList'
+import { useCartState } from '../../store/cart'
+import { FlatList } from '../../component/FlatList'
 import { Page } from '../../component/Page'
+import { Badge } from '../../component/Badge'
+import CartIcon from '../../asset/cart.svg?react'
+import { ProductCard } from './ProductCard'
+import { Footer } from './Footer'
 
 export function ProductList() {
     const { loading, error, products } = useProductsState()
@@ -19,7 +19,6 @@ export function ProductList() {
     const productsToBeShown = useMemo(() => products.filter(_ => !items.includes(_.uniqueId)), [items, products])
 
     const fetchNextPage = () => dispatch(fetchNextProductPage())
-    const addToCart = (id: string) => dispatch(cartActions.add(id))
 
     return (
         <Page id="product-main" title="Products">
@@ -36,17 +35,7 @@ export function ProductList() {
                 data={productsToBeShown}
                 keyExtractor={_ => _.uniqueId}
                 onEndReach={loading ? undefined : fetchNextPage}
-                renderItem={product => (
-                    <div className="product-card" key={product.id}>
-                        <img src={product.image} />
-                        <div className="title">{product.title}</div>
-                        <p>{product.description}</p>
-                        <span>$ {product.price}</span>
-                        <button onClick={() => addToCart(product.uniqueId)}>
-                            <AddIcon />
-                        </button>
-                    </div>
-                )}
+                renderItem={product => <ProductCard product={product} />}
                 listFooter={<Footer loading={loading} hasError={error != null} retry={fetchNextPage} />}
             />
         </Page>

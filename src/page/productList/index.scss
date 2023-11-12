@@ -74,7 +74,7 @@
     @media (max-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
 
-        > .product-card {
+        .product-card {
             height: 14rem;
             > button {
                 svg {
@@ -92,8 +92,13 @@
         grid-template-columns: repeat(3, 1fr);
     }
 
-    > .product-card {
+    .list-item {
         overflow: hidden;
+        display: flex;
+        flex-flow: column;
+    }
+
+    .product-card {
         display: flex;
         flex-flow: column;
         position: relative;
